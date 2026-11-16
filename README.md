@@ -1,2 +1,2 @@
 # PT1_FOOP_JAVA
-GO read thigns bro
+GO read the code bro

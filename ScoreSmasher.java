@@ -1,7 +1,6 @@
 import java.util.Scanner;
 public class ScoreSmasher{
 
-
     public static void getMenu(){
         //Prints Menu
         System.out.println("Welcome to ScoreSmasher: Record Your Game");
@@ -103,22 +102,14 @@ public class ScoreSmasher{
                     System.out.print("Enter Team 2 name: ");
                     team2 = sc.nextLine();
                     if (team1.isEmpty() || team2.isEmpty()){
+                        //Teams must ne non-empty
                     System.out.println("Teams must be non-empty");
+                    } else if (team1.equals(team2)){
+                        //If Both Teams Have The Same Name
+                        System.out.println("Teams must not have the same name");
                     }
-                } while (team1.isEmpty() || team2.isEmpty());
-
-                //If Both Teams Have The Same Name
-                if (team1.equals(team2)){
-                    System.out.print("Both teams have the same name, do you proceed or restart (p/r): ");
-                    char namechoice = sc.next().charAt(0);
-                    if (namechoice == 'r'){
-                        sc.nextLine();
-                        System.out.print("Enter Team 1 name: ");
-                        team1 = sc.nextLine();
-                        System.out.print("Enter Team 2 name: ");
-                        team2 = sc.nextLine();
-                    }
-                }
+                } while (team1.isEmpty() || team2.isEmpty() || (team1.equals(team2)));
+                
                 scoreActivated = true;
 
                 //Instructions For Scoring
@@ -159,7 +150,7 @@ public class ScoreSmasher{
                         teamchoice = sc.nextInt();
                     }
                 }
-                break;  
+                    break;  
 
                 //Case 2 & Case 3 wala pa
 

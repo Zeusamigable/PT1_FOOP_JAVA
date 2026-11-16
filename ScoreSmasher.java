@@ -200,5 +200,6 @@ public class ScoreSmasher{
                 sc.nextLine();
             }
         System.out.println("Thank You For Using ScoreSmasher");
+        sc.close();
     }
 }

@@ -9,7 +9,7 @@ public class ScoreSmasher{
         System.out.println("View Scores = 2");
         System.out.println("Record/Edit Scores = 3");
         System.out.println("Score Summary = 4");
-        System.out.println("Reset Score Board = 5");
+        System.out.println("Reset ScoreBoard = 5");
         System.out.println("Exit Withdraw = 6");
         System.out.println("--------------------");
         System.out.print("Whats your pick: ");
@@ -88,9 +88,9 @@ public class ScoreSmasher{
         while (choice != 6){
             switch (choice){
                 case 1://New Round
-                //Checks whether the score board has been resetted;
+                //Checks whether the scoreboard has been resetted;
                 if (scoreActivated){
-                    System.out.println("Reset The Score Board First!");
+                    System.out.println("Reset The ScoreBoard First!");
                     break;
                 }
                 proceed = false;
@@ -166,9 +166,9 @@ public class ScoreSmasher{
                 
 
                 case 5:
-                    //Reset Score Board
+                    //Reset ScoreBoard
 
-                    System.out.print("Do you wish to reset the Score Board (y/n): ");
+                    System.out.print("Do you wish to reset the ScoreBoard (y/n): ");
                     char resetScoreBoard = sc.next().charAt(0);
 
                     if (resetScoreBoard == 'y'){
@@ -176,11 +176,11 @@ public class ScoreSmasher{
                     team2 = "";
                     Team_1_score = 0;
                     Team_2_score = 0;
-                    System.out.println("Score Board Resetted");
+                    System.out.println("ScoreBoard Reset!");
                     System.out.println("");
                     scoreActivated = false;
                     } else {
-                        System.out.println("Score Board Unchanged!");
+                        System.out.println("ScoreBoard Unchanged!");
                         System.out.println("");
                     }
                     break;

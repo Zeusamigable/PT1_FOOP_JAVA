@@ -27,7 +27,7 @@ public class ScoreSmasher{
         }
     }
 
-    public static void getScoreSummary(double Team_1_score, double Team_2_score, String team1, String team2){
+    public static void getScoreSummary(int Team_1_score, int Team_2_score, String team1, String team2){
         //The summary of the Game
         double behind = 0;
         if (Team_1_score > Team_2_score){
@@ -69,8 +69,8 @@ public class ScoreSmasher{
         boolean proceed = false;
         boolean scoreActivated = false;
                 // Constants & Running Totals
-        double Team_1_score = 0;
-        double Team_2_score = 0;
+        int Team_1_score = 0;
+        int Team_2_score = 0;
         double Leading_Team = 0; // Can be used to determine which team is leading and print the team name; in an if else statement, it copies the highest score then compare whos score is equal to the leading team score and prints its team name and score
 
 

@@ -29,7 +29,7 @@ public class ScoreSmasher{
 
     public static void getScoreSummary(int Team_1_score, int Team_2_score, String team1, String team2){
         //The summary of the Game
-        double behind = 0;
+        int behind = 0;
         if (Team_1_score > Team_2_score){
             //Team 1 Score is Greater
             behind = Team_1_score - Team_2_score;
@@ -40,21 +40,21 @@ public class ScoreSmasher{
         System.out.println("");
         System.out.println("Score Summary: ");
         System.out.println("======================");
-        System.out.printf("Team %s: %.2f%n", team1, Team_1_score);
-        System.out.printf("Team %s: %.2f%n", team2, Team_2_score);
+        System.out.printf("Team %s: %d%n", team1, Team_1_score);
+        System.out.printf("Team %s: %d%n", team2, Team_2_score);
         System.out.println("======================");
 
 
         if (Team_1_score > Team_2_score){
-            System.out.printf("Team %s is leading with %.2f points%n", team1, Team_1_score);
-            System.out.printf("Team %s is behind with %.2f points%n", team2, behind);
+            System.out.printf("Team %s is leading with %d points%n", team1, Team_1_score);
+            System.out.printf("Team %s is behind with %d points%n", team2, behind);
         
         } else if (Team_2_score > Team_1_score){
-            System.out.printf("Team %s is leading with %.2f points%n", team2, Team_2_score);
-            System.out.printf("Team %s is behind with %.2f points%n", team1, behind);
+            System.out.printf("Team %s is leading with %d points%n", team2, Team_2_score);
+            System.out.printf("Team %s is behind with %d points%n", team1, behind);
         
         } else {
-            System.out.printf("Both teams are tied with %.2f points !%n", Team_1_score);
+            System.out.printf("Both teams are tied with %d points !%n", Team_1_score);
         }
         System.out.println("");
     }
@@ -68,10 +68,10 @@ public class ScoreSmasher{
         int teamchoice;
         boolean proceed = false;
         boolean scoreActivated = false;
-                // Constants & Running Totals
+        // Constants & Running Totals
         int Team_1_score = 0;
         int Team_2_score = 0;
-        double Leading_Team = 0; // Can be used to determine which team is leading and print the team name; in an if else statement, it copies the highest score then compare whos score is equal to the leading team score and prints its team name and score
+        int Leading_Team = 0; // Can be used to determine which team is leading and print the team name; in an if else statement, it copies the highest score then compare whos score is equal to the leading team score and prints its team name and score
 
 
         getMenu();
@@ -121,11 +121,11 @@ public class ScoreSmasher{
                     if (teamchoice == 1 || teamchoice == 2){
                         //Score Point
                         System.out.print("How many points did they score: ");
-                        double points = sc.nextDouble();
+                        int points = sc.nextInt();
                         while (points <= 0){
                             System.out.println("Only Positive Number, Try Again");
                             System.out.print("How many points did they score: ");
-                            points = sc.nextDouble();
+                            points = sc.nextInt();
                         }
                         getWhoScores(teamchoice, team1, team2);
                         
@@ -157,6 +157,7 @@ public class ScoreSmasher{
                 case 4:
                     //Score Summary
                     if (!scoreActivated){
+                        System.out.println("");
                         System.out.println("No teams have been created yet, please create a new round first");
                         System.out.println("");
                         break;
@@ -192,6 +193,7 @@ public class ScoreSmasher{
 
                 System.out.print("Return to menu (y/n): ");
                 char returnMenu = sc.next().charAt(0);
+                System.out.println("");
                 if (returnMenu == 'n'){
                     break;
                 }

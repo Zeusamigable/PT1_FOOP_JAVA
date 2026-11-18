@@ -192,7 +192,7 @@ public class ScoreSmasher{
                                     }
                                     System.out.printf("Points added to Team %s score: %d%n", team2, Team_2_score);
 
-                                } else {
+                                } else if(addPointsChoice != 1 && addPointsChoice != 2 && addPointsChoice != 0){
                                     System.out.println("Invalid Team Choice, Try Again");
                                 }
                             } while (addPointsChoice != 0);
@@ -227,7 +227,7 @@ public class ScoreSmasher{
                                         System.out.println("Negative Numbers Only");
                                     }
                                     System.out.printf("Points deducted to Team %s score: %d%n", team2, Team_2_score);
-                                } else {
+                                } else if(deductPointsChoice != 1 && deductPointsChoice != 2 && deductPointsChoice != 0){
                                     System.out.println("Invalid Team Choice, Try Again");
                                 }
                             } while (deductPointsChoice != 0);

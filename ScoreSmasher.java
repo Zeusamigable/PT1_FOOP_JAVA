@@ -68,6 +68,10 @@ public class ScoreSmasher{
         int teamchoice;
         boolean proceed = false;
         boolean scoreActivated = false;
+        int addPointsChoice = 0;
+        char returnMenu = ' ';
+        int deductPointsChoice = 0;
+        char case3Choice = ' ';
         // Constants & Running Totals
         int Team_1_score = 0;
         int Team_2_score = 0;
@@ -152,8 +156,85 @@ public class ScoreSmasher{
                 }
                     break;  
 
-                //Case 2 & Case 3 wala pa
+                //Case 2 wala pa & Case 3 unfinished
+                
+                case 3:
+                    //Record/Edit Scores
+                    do {System.out.println("(A) ADD (U) UPDATE (D) DEDUCT SCORES (E) EXIT");
+                    // System.out.println("Current Scores ilagay dito");
+                    System.out.print("Whats your pick: ");
+                    case3Choice = sc.next().charAt(0);
+                    switch (case3Choice){
+                        case 'A':
+                            do{
+                                System.out.println("Add Points");
+                                System.out.printf("Team %s: Enter 1      Team %s: Enter 2%n", team1, team2);
+                                System.out.printf("Team %s: %d       Team %s: %d%n", team1, Team_1_score, team2, Team_2_score);
+                                System.out.print("Add Points to which team (0 to Stop): ");
+                                addPointsChoice = sc.nextInt();
+                                int addPointsTeam = 0;
+                                if (addPointsChoice == 1){
+                                    System.out.printf("How many points to add for Team %s: ", team1);
+                                    addPointsTeam = sc.nextInt();
+                                    if (addPointsTeam > 0){
+                                        Team_1_score += addPointsTeam;
+                                    } else {
+                                        System.out.println("Positive Numbers Only");
+                                    }
+                                    System.out.printf("Points added to Team %s score: %d%n", team1, Team_1_score);
+                                } else if (addPointsChoice == 2){
+                                    System.out.printf("How many points added for %s: ", team2);
+                                    addPointsTeam = sc.nextInt();
+                                    if (addPointsTeam > 0){
+                                        Team_2_score += addPointsTeam;
+                                    } else {
+                                        System.out.println("Positive Numbers Only");
+                                    }
+                                    System.out.printf("Points added to Team %s score: %d%n", team2, Team_2_score);
 
+                                } else {
+                                    System.out.println("Invalid Team Choice, Try Again");
+                                }
+                            } while (addPointsChoice != 0);
+                            break;
+
+                        // case 'U':
+
+
+                        case 'D':
+                            do{
+                                System.out.println("Deduct Points");
+                                System.out.printf("Team %s: Enter 1      Team %s: Enter 2%n", team1, team2);
+                                System.out.printf("Team %s: %d       Team %s: %d%n", team1, Team_1_score, team2, Team_2_score);
+                                System.out.print("Deduct Points to which team (0 to Stop): ");
+                                deductPointsChoice = sc.nextInt();
+                                int deductPointsTeam = 0;
+                                if (deductPointsChoice == 1){
+                                    System.out.printf("How many points to add for Team %s: ", team1);
+                                    deductPointsTeam = sc.nextInt();
+                                    if (deductPointsTeam < 0){
+                                        Team_1_score += deductPointsTeam;
+                                    } else {
+                                        System.out.println("Negative Numbers Only");
+                                    }
+                                    System.out.printf("Points deducted to Team %s score: %d%n", team1, Team_1_score);
+                                } else if (addPointsChoice == 2){
+                                    System.out.printf("How many points deducted for %s: ", team2);
+                                    deductPointsTeam = sc.nextInt();
+                                    if (deductPointsTeam < 0){
+                                        Team_2_score += deductPointsTeam;
+                                    } else {
+                                        System.out.println("Negative Numbers Only");
+                                    }
+                                    System.out.printf("Points deducted to Team %s score: %d%n", team2, Team_2_score);
+                                } else {
+                                    System.out.println("Invalid Team Choice, Try Again");
+                                }
+                            } while (deductPointsChoice != 0);
+                        break;
+                        }
+                    } while(case3Choice != 'E');
+                    break;
                 case 4:
                     //Score Summary
                     if (!scoreActivated){
@@ -191,15 +272,21 @@ public class ScoreSmasher{
                     break;
                 }
 
-                System.out.print("Return to menu (y/n): ");
-                char returnMenu = sc.next().charAt(0);
-                System.out.println("");
+                do{
+                    System.out.print("Return to menu (y/n): ");
+                    returnMenu = sc.next().charAt(0);
+                    System.out.println("");
+                    if (returnMenu != 'n' && returnMenu != 'y'){
+                        System.out.println("Invalid Choice, Try Again");
+                    }
+                } while(returnMenu != 'y' && returnMenu != 'n');
+
                 if (returnMenu == 'n'){
                     break;
                 }
-                getMenu();
-                choice = sc.nextInt();
-                sc.nextLine();
+                    getMenu();
+                    choice = sc.nextInt();
+                    sc.nextLine();
             }
         System.out.println("Thank You For Using ScoreSmasher");
         sc.close();

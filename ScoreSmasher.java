@@ -218,7 +218,7 @@ public class ScoreSmasher{
                                         System.out.println("Negative Numbers Only");
                                     }
                                     System.out.printf("Points deducted to Team %s score: %d%n", team1, Team_1_score);
-                                } else if (addPointsChoice == 2){
+                                } else if (deductPointsChoice == 2){
                                     System.out.printf("How many points deducted for %s: ", team2);
                                     deductPointsTeam = sc.nextInt();
                                     if (deductPointsTeam < 0){

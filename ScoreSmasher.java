@@ -1,6 +1,6 @@
 import java.util.Scanner;
 public class ScoreSmasher{
-
+ 
     public static void getMenu(){
         //Prints Menu
         System.out.println("Welcome to ScoreSmasher: Record Your Game");
@@ -58,6 +58,13 @@ public class ScoreSmasher{
         }
         System.out.println("");
     }
+
+    public static void getIfScoreIsActivated (){
+        System.out.println("");
+        System.out.println("No teams have been created yet, please create a new round first");
+        System.out.println("");
+    
+    }
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
@@ -68,10 +75,11 @@ public class ScoreSmasher{
         int teamchoice;
         boolean proceed = false;
         boolean scoreActivated = false;
+        char case3Choice = ' ';
         int addPointsChoice = 0;
         char returnMenu = ' ';
         int deductPointsChoice = 0;
-        char case3Choice = ' ';
+        int updatePointsChoice = 0;
         // Constants & Running Totals
         int Team_1_score = 0;
         int Team_2_score = 0;
@@ -160,6 +168,10 @@ public class ScoreSmasher{
                 
                 case 3:
                     //Record/Edit Scores
+                    if (!scoreActivated){
+                        getIfScoreIsActivated();
+                        break;
+                    }
                     do {System.out.println("(A) ADD (U) UPDATE (D) DEDUCT SCORES (E) EXIT");
                     // System.out.println("Current Scores ilagay dito");
                     System.out.print("Whats your pick: ");
@@ -167,9 +179,10 @@ public class ScoreSmasher{
                     switch (case3Choice){
                         case 'A':
                             do{
-                                System.out.println("Add Points");
+                                System.out.println("Add Point to which team?");
                                 System.out.printf("Team %s: Enter 1      Team %s: Enter 2%n", team1, team2);
-                                System.out.printf("Team %s: %d       Team %s: %d%n", team1, Team_1_score, team2, Team_2_score);
+                                System.out.printf("Team %s scored %d point%n", team1, Team_1_score);
+                                System.out.printf("Team %s scored %d point%n", team2, Team_2_score);
                                 System.out.print("Add Points to which team (0 to Stop): ");
                                 addPointsChoice = sc.nextInt();
                                 int addPointsTeam = 0;
@@ -198,28 +211,53 @@ public class ScoreSmasher{
                             } while (addPointsChoice != 0);
                             break;
 
-                        // case 'U':
-
+                        case 'U':
+                                do{
+                                    System.out.println("Update Points to which team?");
+                                    System.out.printf("Team %s: Enter 1      Team %s: Enter 2%n", team1, team2);
+                                    System.out.printf("Team %s scored %d point%n", team1, Team_1_score);
+                                    System.out.printf("Team %s scored %d point%n", team2, Team_2_score);
+                                    System.out.print("Update Points to which team (0 to Stop): ");
+                                    updatePointsChoice = sc.nextInt();
+                                    if (updatePointsChoice == 1){
+                                        System.out.printf("Change the Score of %s: ", team1);
+                                        int changeScore = sc.nextInt();
+                                        Team_1_score = changeScore;
+                                        System.out.printf("Score Updated for %s%n", team1);
+                                    } else if (updatePointsChoice == 2){
+                                        System.out.printf("Change the Score of %s: ", team2);
+                                        int changeScore = sc.nextInt();
+                                        Team_2_score = changeScore;
+                                        System.out.printf("Score Updated for %s%n", team2);
+                                    } else if (updatePointsChoice != 1 && updatePointsChoice != 2 && updatePointsChoice != 0){
+                                        System.out.println("Invalid Team Choice, Try Again");
+                                    }
+                                } while (updatePointsChoice != 0);
+                            break;
 
                         case 'D':
-                            do{
-                                System.out.println("Deduct Points");
+                            do{ //BUG; IF 
+                                System.out.println("Deduct Points to which team?");
                                 System.out.printf("Team %s: Enter 1      Team %s: Enter 2%n", team1, team2);
-                                System.out.printf("Team %s: %d       Team %s: %d%n", team1, Team_1_score, team2, Team_2_score);
+                                System.out.printf("Team %s scored %d point%n", team1, Team_1_score);
+                                System.out.printf("Team %s scored %d point%n", team2, Team_2_score);
                                 System.out.print("Deduct Points to which team (0 to Stop): ");
                                 deductPointsChoice = sc.nextInt();
                                 int deductPointsTeam = 0;
                                 if (deductPointsChoice == 1){
-                                    System.out.printf("How many points to add for Team %s: ", team1);
+                                    System.out.printf("How many points deducted for Team %s: ", team1);
                                     deductPointsTeam = sc.nextInt();
-                                    if (deductPointsTeam < 0){
+                                    if ((Team_1_score - deductPointsTeam) < 0){
+                                        Team_1_score = 0;
+                                    } else if (deductPointsTeam < 0){
                                         Team_1_score += deductPointsTeam;
                                     } else {
                                         System.out.println("Negative Numbers Only");
                                     }
+                
                                     System.out.printf("Points deducted to Team %s score: %d%n", team1, Team_1_score);
                                 } else if (deductPointsChoice == 2){
-                                    System.out.printf("How many points deducted for %s: ", team2);
+                                    System.out.printf("How many points deducted for Team %s: ", team2);
                                     deductPointsTeam = sc.nextInt();
                                     if (deductPointsTeam < 0){
                                         Team_2_score += deductPointsTeam;
@@ -238,9 +276,7 @@ public class ScoreSmasher{
                 case 4:
                     //Score Summary
                     if (!scoreActivated){
-                        System.out.println("");
-                        System.out.println("No teams have been created yet, please create a new round first");
-                        System.out.println("");
+                        getIfScoreIsActivated();
                         break;
                     }
                     getScoreSummary(Team_1_score, Team_2_score, team1, team2);

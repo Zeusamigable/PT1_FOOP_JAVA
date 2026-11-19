@@ -27,7 +27,7 @@ public class ScoreSmasher{
         }
     }
 
-    public static void getScoreSummary(int Team_1_score, int Team_2_score, String team1, String team2){
+    public static void getScoreSummary(int Team_1_score, int Team_2_score, String team1, String team2, int highestScore){
         //The summary of the Game
         int behind = 0;
         if (Team_1_score > Team_2_score){
@@ -56,6 +56,12 @@ public class ScoreSmasher{
         } else {
             System.out.printf("Both teams are tied with %d points !%n", Team_1_score);
         }
+
+        if (highestScore > 0){
+            System.out.println("======================");
+            System.out.printf("Highest score earned: %d%n", highestScore);
+        }
+
         System.out.println("");
     }
 
@@ -80,10 +86,10 @@ public class ScoreSmasher{
         char returnMenu = ' ';
         int deductPointsChoice = 0;
         int updatePointsChoice = 0;
-        // Constants & Running Totals
+        int highestScore = 0;
         int Team_1_score = 0;
         int Team_2_score = 0;
-        int Leading_Team = 0; 
+        String Leading_Team = " "; 
         getMenu();
         choice = sc.nextInt();
         while (choice <= 0|| choice > 6){
@@ -116,9 +122,14 @@ public class ScoreSmasher{
                     System.out.println("Teams must be non-empty");
                     } else if (team1.equals(team2)){
                         //If Both Teams Have The Same Name
-                        System.out.println("Teams must not have the same name");
+                        System.out.print("Both Teams have the same name. Proceed or Restart (P/R): ");
+                        char choiceRestartName = sc.next().charAt(0);
+                        sc.nextLine();
+                        if (choiceRestartName == 'P' || choiceRestartName == 'p'){
+                            break;
+                        }
                     }
-                } while (team1.isEmpty() || team2.isEmpty() || (team1.equals(team2)));
+                } while (team1.isEmpty() || team2.isEmpty() || team1.equals(team2));
                 
                 scoreActivated = true;
 
@@ -138,6 +149,9 @@ public class ScoreSmasher{
                             points = sc.nextInt();
                         }
                         getWhoScores(teamchoice, team1, team2, points);
+                        if (points > highestScore){
+                            highestScore = points;
+                        }
                         
                         if (teamchoice == 1){
                             Team_1_score += points;
@@ -147,7 +161,7 @@ public class ScoreSmasher{
 
                     } else if (teamchoice == 0){
                         //Prints the Summary Of The Game
-                        getScoreSummary(Team_1_score, Team_2_score, team1, team2);
+                        getScoreSummary(Team_1_score, Team_2_score, team1, team2, highestScore);
                         proceed = true;
                     } else {
                         //Invalid Input
@@ -161,9 +175,37 @@ public class ScoreSmasher{
                     }
                 }
                     break;  
-
-                //Case 2 wala pa & Case 3 unfinished
                 
+                case 2:
+                //highest score
+                    if (!scoreActivated) {
+                        getIfScoreIsActivated();
+                        break;
+                    }
+
+                    if (Team_1_score > Team_2_score){
+                        Leading_Team = team1;
+                    } else if (Team_2_score > Team_1_score){
+                        Leading_Team = team2;
+                    } else {
+                        Leading_Team = "Tie";
+                    }
+
+                    System.out.println("");
+                    System.out.println("Current Scores:");
+                    System.out.printf("Team %s: %d%n", team1, Team_1_score);
+                    System.out.printf("Team %s: %d%n", team2, Team_2_score);
+
+                    if (Team_1_score == Team_2_score) {
+                        System.out.printf("Both teams are tied with %d points!%n", Team_1_score);
+                    } else if (Team_1_score > Team_2_score) {
+                        System.out.printf("Team %s is currently leading with %d points.%n", Leading_Team, Team_1_score);
+                    } else if (Team_1_score < Team_2_score) {
+                        System.out.printf("Team %s is currently leading with %d points.%n", Leading_Team, Team_2_score);
+                    }
+                    System.out.println("");
+                    break;
+
                 case 3:
                     //Record/Edit Scores
                     if (!scoreActivated){
@@ -193,6 +235,9 @@ public class ScoreSmasher{
                                         addPointsTeam = sc.nextInt();
                                         if (addPointsTeam > 0){
                                             Team_1_score += addPointsTeam;
+                                            if (addPointsTeam > highestScore){
+                                                highestScore = addPointsTeam;
+                                            }
                                         } else {
                                             System.out.println("");
                                             System.out.println("Positive Numbers Only");
@@ -204,6 +249,9 @@ public class ScoreSmasher{
                                         addPointsTeam = sc.nextInt();
                                         if (addPointsTeam > 0){
                                             Team_2_score += addPointsTeam;
+                                            if (addPointsTeam > highestScore){
+                                                highestScore = addPointsTeam;
+                                            }
                                         } else {
                                             System.out.println("");
                                             System.out.println("Positive Numbers Only");
@@ -323,7 +371,7 @@ public class ScoreSmasher{
                         getIfScoreIsActivated();
                         break;
                     }
-                    getScoreSummary(Team_1_score, Team_2_score, team1, team2);
+                    getScoreSummary(Team_1_score, Team_2_score, team1, team2, highestScore);
                     break;
                 
 
@@ -338,6 +386,8 @@ public class ScoreSmasher{
                     team2 = "";
                     Team_1_score = 0;
                     Team_2_score = 0;
+                    highestScore = 0;
+                    Leading_Team = " ";
                     System.out.println("ScoreBoard Reset!");
                     System.out.println("");
                     scoreActivated = false;

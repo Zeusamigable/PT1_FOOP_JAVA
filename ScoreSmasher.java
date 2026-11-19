@@ -209,7 +209,7 @@ public class ScoreSmasher{
                             } while (addPointsChoice != 0);
                             break;
 
-                        case 'U':
+                        case 'U': //FIX BUG ON THE NEGATIVE NUMBER PART
                                 do{
                                     System.out.println("Update Points to which team?");
                                     System.out.printf("Team %s: Enter 1      Team %s: Enter 2%n", team1, team2);

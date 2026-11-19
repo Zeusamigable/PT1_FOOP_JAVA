@@ -190,7 +190,9 @@ public class ScoreSmasher{
                                     if (addPointsTeam > 0){
                                         Team_1_score += addPointsTeam;
                                     } else {
+                                        System.out.println("");
                                         System.out.println("Positive Numbers Only");
+                                        System.out.println("");
                                     }
                                     System.out.printf("Team %s score: %d%n", team1, Team_1_score);
                                 } else if (addPointsChoice == 2){
@@ -199,17 +201,21 @@ public class ScoreSmasher{
                                     if (addPointsTeam > 0){
                                         Team_2_score += addPointsTeam;
                                     } else {
+                                        System.out.println("");
                                         System.out.println("Positive Numbers Only");
+                                        System.out.println("");
                                     }
                                     System.out.printf("Team %s score: %d%n", team2, Team_2_score);
 
                                 } else if(addPointsChoice != 1 && addPointsChoice != 2 && addPointsChoice != 0){
+                                    System.out.println("");
                                     System.out.println("Invalid Team Choice, Try Again");
+                                    System.out.println("");
                                 }
                             } while (addPointsChoice != 0);
                             break;
 
-                        case 'U': //FIX BUG ON THE NEGATIVE NUMBER PART
+                        case 'U':
                                 do{
                                     System.out.println("Update Points to which team?");
                                     System.out.printf("Team %s: Enter 1      Team %s: Enter 2%n", team1, team2);
@@ -221,28 +227,38 @@ public class ScoreSmasher{
                                         System.out.printf("Change the Score of Team %s: ", team1);
                                         int changeScore = sc.nextInt();
                                         if (changeScore < 0){
+                                            System.out.println("");
                                             System.out.println("No Negative Numbers Allowed");
-                                            break;
+                                            System.out.println("");
+                                            continue;
                                         }
                                         Team_1_score = changeScore;
+                                        System.out.println("");
                                         System.out.printf("Score Updated for %s%n", team1);
+                                        System.out.println("");
                                     } else if (updatePointsChoice == 2){
                                         System.out.printf("Change the Score of Team %s: ", team2);
                                         int changeScore = sc.nextInt();
                                         if (changeScore < 0){
+                                            System.out.println("");
                                             System.out.println("No Negative Numbers Allowed");
+                                            System.out.println("");
                                             break;
                                         }
                                         Team_2_score = changeScore;
+                                        System.out.println("");
                                         System.out.printf("Score Updated for %s%n", team2);
+                                        System.out.println("");
                                     } else if (updatePointsChoice != 1 && updatePointsChoice != 2 && updatePointsChoice != 0){
+                                        System.out.println("");
                                         System.out.println("Invalid Team Choice, Try Again");
+                                        System.out.println("");
                                     }
                                 } while (updatePointsChoice != 0);
                             break;
 
                         case 'D':
-                            do{ //BUG; IF 
+                            do{
                                 System.out.println("Deduct Points to which team?");
                                 System.out.printf("Team %s: Enter 1      Team %s: Enter 2%n", team1, team2);
                                 System.out.printf("Team %s scored %d point%n", team1, Team_1_score);
@@ -258,7 +274,9 @@ public class ScoreSmasher{
                                     } else if (deductPointsTeam > 0){
                                         Team_1_score -= deductPointsTeam;
                                     } else {
+                                        System.out.println("");
                                         System.out.println("Positive Numbers Only");
+                                        System.out.println("");
                                     }
                                     System.out.printf("Team %s score: %d%n", team1, Team_1_score);
                                 } else if (deductPointsChoice == 2){
@@ -269,16 +287,25 @@ public class ScoreSmasher{
                                     } else if (deductPointsTeam > 0){
                                         Team_2_score -= deductPointsTeam;
                                     } else {
+                                        System.out.println("");
                                         System.out.println("Positive Numbers Only");
-                                        
+                                        System.out.println("");
                                     }
                                     System.out.printf("Team %s score: %d%n", team2, Team_2_score);
 
                                 } else if(deductPointsChoice != 1 && deductPointsChoice != 2 && deductPointsChoice != 0){
+                                    System.out.println("");
                                     System.out.println("Invalid Team Choice, Try Again");
+                                    System.out.println("");
                                 }
                             } while (deductPointsChoice != 0);
                         break;
+
+                        default:
+                            if (case3Choice != 'E'){
+                                System.out.println("Invalid Choice, Try Again");
+                                break;
+                            }
                         }
                     } while(case3Choice != 'E');
                     break;

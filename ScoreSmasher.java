@@ -1,3 +1,184 @@
+// SAMPLE RUN: 1
+// INPUT
+// 1
+// ZusCoffee
+// Starbucks
+// 1
+// 2
+// 1
+// 3
+// 2
+// 3
+// 2
+// 5
+// 2
+// 2
+// 0
+// N
+// OUTPUT:
+// 
+// Score Summary: 
+// ======================
+// Team ZusCoffee: 5
+// Team Starbucks: 10
+// ======================
+// Team Starbucks is leading with 10 points
+// Team ZusCoffee is behind with 5 points
+// ======================
+// Highest score earned: 5
+
+// Return to menu (Y/N):
+// Thank You For Using ScoreSmasher
+
+
+// SAMPLE RUN: 2
+// INPUT:
+// 2 (View Scores)
+// Y (Return to menu)
+// 3 (Record/Edit Scores)
+// Y (Return to menu)
+// 4 (Score Summary)
+// Y (Return to menu)
+// 6 (Exit Withdraw)
+// OUTPUT:
+// Welcome to ScoreSmasher: Record Your Game
+// ==========================================
+// New Round = 1
+// View Scores = 2
+// Record/Edit Scores = 3
+// Score Summary = 4
+// Reset ScoreBoard = 5
+// Exit Withdraw = 6
+// --------------------
+// Whats your pick: 2
+
+// No teams have been created yet, please create a new round first
+
+// Return to menu (Y/N): Y
+
+// Welcome to ScoreSmasher: Record Your Game
+// ==========================================
+// New Round = 1
+// View Scores = 2
+// Record/Edit Scores = 3
+// Score Summary = 4
+// Reset ScoreBoard = 5
+// Exit Withdraw = 6
+// --------------------
+// Whats your pick: 3
+
+// No teams have been created yet, please create a new round first
+
+// Return to menu (Y/N): Y
+
+// Welcome to ScoreSmasher: Record Your Game
+// ==========================================
+// New Round = 1
+// View Scores = 2
+// Record/Edit Scores = 3
+// Score Summary = 4
+// Reset ScoreBoard = 5
+// Exit Withdraw = 6
+// --------------------
+// Whats your pick: 4
+
+// No teams have been created yet, please create a new round first
+
+// Return to menu (Y/N): Y
+
+// Welcome to ScoreSmasher: Record Your Game
+// ==========================================
+// New Round = 1
+// View Scores = 2
+// Record/Edit Scores = 3
+// Score Summary = 4
+// Reset ScoreBoard = 5
+// Exit Withdraw = 6
+// --------------------
+// Whats your pick: 6
+// Thank You For Using ScoreSmasher
+
+
+//SAMPLE RUN: 3
+// INPUT:
+// 1
+// Sofia
+// Zeus
+// Zeus
+// R
+// Aki
+// Zeus
+// 1
+// 1274
+// 2
+// 756
+// 3
+// -4
+// 1
+// -5
+// 5
+// 2
+// -78
+// 8
+// 8
+// 0
+// N
+// Welcome to ScoreSmasher: Record Your Game
+// ==========================================
+// New Round = 1
+// View Scores = 2
+// Record/Edit Scores = 3
+// Score Summary = 4
+// Reset ScoreBoard = 5
+// Exit Withdraw = 6
+// --------------------
+// Whats your pick: 1
+// Enter Team 1 name: 
+// Enter Team 2 name: Sofia
+// Teams must be non-empty
+// Enter Team 1 name: Zeus
+// Enter Team 2 name: Zeus
+// Both Teams have the same name. Proceed or Restart (P/R): R
+// Enter Team 1 name: Aki
+// Enter Team 2 name: Zeus
+// Enter the team's number, then their points.
+// Team Aki: Enter 1      Team Zeus: Enter 2
+// Which Team won (0 to Stop): 1
+// How many points did they score: 1274
+// Team Aki scored 1274 points!
+// Which Team won (0 to Stop): 2
+// How many points did they score: 756
+// Team Zeus scored 756 points!
+// Which Team won (0 to Stop): 3
+// Invalid Team Choice, Try Again
+// Which Team won (0 to Stop): -4
+// Invalid Team Choice, Try Again
+// Which Team won (0 to Stop): 1
+// How many points did they score: -5
+// Only Positive Numbers, Try Again
+// How many points did they score: 5
+// Team Aki scored 5 points!
+// Which Team won (0 to Stop): 2
+// How many points did they score: -78
+// Only Positive Numbers, Try Again
+// How many points did they score: 8
+// Team Zeus scored 8 points!
+// Which Team won (0 to Stop): 0
+
+// Score Summary: 
+// ======================
+// Team Aki: 1279
+// Team Zeus: 764
+// ======================
+// Team Aki is leading with 1279 points
+// Team Zeus is behind with 515 points
+// ======================
+// Highest score earned: 1274
+
+// Return to menu (Y/N): N
+
+// Thank You For Using ScoreSmasher
+
 import java.util.Scanner;
 public class ScoreSmasher{
  
@@ -28,7 +209,7 @@ public class ScoreSmasher{
     }
 
     public static void getScoreSummary(int Team_1_score, int Team_2_score, String team1, String team2, int highestScore){
-        //The summary of the Game
+        //The Summary of the Game
         int behind = 0;
         if (Team_1_score > Team_2_score){
             //Team 1 Score is Greater
@@ -66,6 +247,7 @@ public class ScoreSmasher{
     }
 
     public static void getIfScoreIsActivated (){
+        //If User Inputs Case 2, 3, & 4 without making a team yet
         System.out.println("");
         System.out.println("No teams have been created yet, please create a new round first");
         System.out.println("");
@@ -74,7 +256,7 @@ public class ScoreSmasher{
     public static void main(String[] args){
         Scanner sc = new Scanner(System.in);
 
-        // Team name
+        //Variables
         String team1 = "";
         String team2 = "";
         int choice = 0;
@@ -143,8 +325,8 @@ public class ScoreSmasher{
                         //Score Point
                         System.out.print("How many points did they score: ");
                         int points = sc.nextInt();
-                        while (points <= 0){
-                            System.out.println("Only Positive Number, Try Again");
+                        while (points < 0){
+                            System.out.println("Only Positive Numbers, Try Again");
                             System.out.print("How many points did they score: ");
                             points = sc.nextInt();
                         }
@@ -183,6 +365,7 @@ public class ScoreSmasher{
                         break;
                     }
 
+                    //Whoever scored the most sets as the leading team
                     if (Team_1_score > Team_2_score){
                         Leading_Team = team1;
                     } else if (Team_2_score > Team_1_score){
@@ -221,6 +404,7 @@ public class ScoreSmasher{
                         case3Choice = sc.next().charAt(0);
                         switch (case3Choice){
                             case 'A':
+                                //Add points to the current scores
                                 do{
                                     System.out.println("Add Points to which team?");
                                     System.out.printf("Team %s: Enter 1      Team %s: Enter 2%n", team1, team2);
@@ -239,6 +423,7 @@ public class ScoreSmasher{
                                                 highestScore = addPointsTeam;
                                             }
                                         } else {
+                                            //Inputs a negetive number
                                             System.out.println("");
                                             System.out.println("Positive Numbers Only");
                                             System.out.println("");
@@ -253,6 +438,7 @@ public class ScoreSmasher{
                                                 highestScore = addPointsTeam;
                                             }
                                         } else {
+                                            //Inputs a negetive number
                                             System.out.println("");
                                             System.out.println("Positive Numbers Only");
                                             System.out.println("");
@@ -260,6 +446,7 @@ public class ScoreSmasher{
                                         System.out.printf("Team %s score: %d%n", team2, Team_2_score);
 
                                     } else if(addPointsChoice != 1 && addPointsChoice != 2 && addPointsChoice != 0){
+                                        //Inputs other numbers rather than 1 or 2
                                         System.out.println("");
                                         System.out.println("Invalid Team Choice, Try Again");
                                         System.out.println("");
@@ -268,6 +455,7 @@ public class ScoreSmasher{
                                 break;
 
                             case 'U':
+                                //Updates current score
                                     do{
                                         System.out.println("Update Points to which team?");
                                         System.out.printf("Team %s: Enter 1      Team %s: Enter 2%n", team1, team2);
@@ -311,6 +499,7 @@ public class ScoreSmasher{
                                 break;
 
                             case 'D':
+                                //Deduct points on the current scores
                                 do{
                                     System.out.println("Deduct Points to which team?");
                                     System.out.printf("Team %s: Enter 1      Team %s: Enter 2%n", team1, team2);
@@ -371,6 +560,7 @@ public class ScoreSmasher{
                         getIfScoreIsActivated();
                         break;
                     }
+                    //Score Summary
                     getScoreSummary(Team_1_score, Team_2_score, team1, team2, highestScore);
                     break;
                 
